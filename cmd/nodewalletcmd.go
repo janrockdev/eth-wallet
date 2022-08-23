@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"github.com/janrockdev/eth-wallet/utils"
+	"github.com/urfave/cli/v2"
 	"math/big"
 	"os"
 	"strconv"

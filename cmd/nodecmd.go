@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/janrockdev/eth-wallet/types"
 	"github.com/janrockdev/eth-wallet/wallet"
+	"github.com/urfave/cli/v2"
 	"os"
 )
 

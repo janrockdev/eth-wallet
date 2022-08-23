@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/janrockdev/eth-wallet/cmd"
+	"github.com/urfave/cli/v2"
 	"os"
 )
 

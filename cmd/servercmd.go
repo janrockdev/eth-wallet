@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"github.com/janrockdev/eth-wallet/server"
+	"github.com/urfave/cli/v2"
 )
 
 var (
