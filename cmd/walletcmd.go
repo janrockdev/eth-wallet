@@ -5,10 +5,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/tn606024/ethwallet/types"
-	"github.com/tn606024/ethwallet/utils"
-	"github.com/tn606024/ethwallet/wallet"
-	"github.com/urfave/cli/v2"
+	"github.com/janrockdev/eth-wallet/types"
+	"github.com/janrockdev/eth-wallet/utils"
+	"github.com/janrockdev/eth-wallet/wallet"
 	"os"
 )
 

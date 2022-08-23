@@ -2,7 +2,7 @@ package types
 
 import (
 	"fmt"
-	"github.com/tn606024/ethwallet/utils"
+	"github.com/janrockdev/eth-wallet/utils"
 )
 
 type BlockParam string

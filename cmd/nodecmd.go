@@ -3,9 +3,8 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/tn606024/ethwallet/types"
-	"github.com/tn606024/ethwallet/wallet"
-	"github.com/urfave/cli/v2"
+	"github.com/janrockdev/eth-wallet/types"
+	"github.com/janrockdev/eth-wallet/wallet"
 	"os"
 )
 

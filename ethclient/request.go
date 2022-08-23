@@ -3,8 +3,8 @@ package ethclient
 import (
 	"encoding/hex"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/tn606024/ethwallet/types"
-	"github.com/tn606024/ethwallet/utils"
+	"github.com/janrockdev/eth-wallet/types"
+	"github.com/janrockdev/eth-wallet/utils"
 	"math/big"
 	"sync"
 )

@@ -3,10 +3,10 @@ package wallet
 import (
 	"fmt"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/tn606024/ethwallet/conn"
-	"github.com/tn606024/ethwallet/crypto"
-	"github.com/tn606024/ethwallet/types"
-	"github.com/tn606024/ethwallet/utils"
+	"github.com/janrockdev/eth-wallet/conn"
+	"github.com/janrockdev/eth-wallet/crypto"
+	"github.com/janrockdev/eth-wallet/types"
+	"github.com/janrockdev/eth-wallet/utils"
 	"math/big"
 )
 

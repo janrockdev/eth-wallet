@@ -3,7 +3,7 @@ package utils
 import (
 	"fmt"
 	"github.com/ethereum/go-ethereum/accounts/abi"
-	"github.com/tn606024/ethwallet/crypto"
+	"github.com/janrockdev/eth-wallet/crypto"
 	"reflect"
 	"strings"
 )

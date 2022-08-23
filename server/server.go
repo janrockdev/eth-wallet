@@ -3,9 +3,9 @@ package server
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/tn606024/ethwallet/ethclient"
-	"github.com/tn606024/ethwallet/types"
-	"github.com/tn606024/ethwallet/utils"
+	"github.com/janrockdev/eth-wallet/ethclient"
+	"github.com/janrockdev/eth-wallet/types"
+	"github.com/janrockdev/eth-wallet/utils"
 	"net/http"
 	"os"
 	"strconv"

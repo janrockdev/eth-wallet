@@ -4,7 +4,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"github.com/tn606024/ethwallet/utils"
+	"github.com/janrockdev/eth-wallet/utils"
 	"io/ioutil"
 	"math/big"
 	"os"

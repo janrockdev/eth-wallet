@@ -2,7 +2,7 @@ package tests
 
 import (
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/tn606024/ethwallet/types"
+	"github.com/janrockdev/eth-wallet/types"
 )
 
 var (

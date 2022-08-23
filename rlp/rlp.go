@@ -1,6 +1,6 @@
 package rlp
 
-import "github.com/tn606024/ethwallet/utils"
+import "github.com/janrockdev/eth-wallet/utils"
 
 type Offset struct {
 	short byte
