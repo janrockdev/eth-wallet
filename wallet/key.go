@@ -7,7 +7,8 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/janrockdev/eth-wallet/crypto"
 	"github.com/janrockdev/eth-wallet/utils"
-	"github.com/pborman/uuid"
+	//"github.com/pborman/uuid"
+	"github.com/google/uuid"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -22,7 +23,7 @@ func NewKey() (key *crypto.Key) {
 }
 
 func NewKeyFromECDSA(privateKeyECDSA *ecdsa.PrivateKey) *crypto.Key {
-	id := uuid.NewRandom()
+	id, _ := uuid.NewRandom()
 	key := &crypto.Key{
 		Id:         id,
 		Address:    crypto.PubkeyToAddress(privateKeyECDSA.PublicKey),

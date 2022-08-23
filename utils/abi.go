@@ -25,13 +25,13 @@ func DecodeSingle(str string, typ string) (res interface{}, err error) {
 	b := HexStrToBytes(str)
 	typs := fmt.Sprintf(`[{ "type": "%s" }]`, typ)
 	def := fmt.Sprintf(`[{ "name" : "method", "outputs": %s}]`, typs)
-	abi, err := abi.JSON(strings.NewReader(def))
+	abires, err := abi.JSON(strings.NewReader(def))
 	if err != nil {
 		return "", nil
 	}
 	outptr := reflect.New(reflect.TypeOf(""))
-	err = abi.Unpack(outptr.Interface(), "method", b)
-	if err != nil {
+	_err, _ := abires.Unpack("method", b) //(outptr.Interface(), "method", b)
+	if _err != nil {
 		return "", nil
 	}
 	out := outptr.Elem().Interface()
