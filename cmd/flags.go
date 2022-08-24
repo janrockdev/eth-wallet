@@ -7,12 +7,12 @@ var (
 		Name:    "keystorepath",
 		Aliases: []string{"p"},
 		Value:   "",
-		Usage:   "file folder to store keyfile, if you haven't target, keyfile will generate in './keystore'",
+		Usage:   "folder to store a keyfile, if not set, keyfile will be generated in './keystore'",
 	}
 	keyfileFlag = &cli.StringFlag{
 		Name:  "keyfile",
 		Value: "",
-		Usage: "file contains keystore",
+		Usage: "file which contains keystore",
 	}
 	addressFlag = &cli.StringFlag{
 		Name:  "address",
@@ -41,7 +41,7 @@ var (
 	}
 	rawFlag = &cli.StringFlag{
 		Name:  "raw",
-		Usage: "need send raw",
+		Usage: "need to send raw",
 	}
 	rawFileFlag = &cli.StringFlag{
 		Name:  "rawfile",

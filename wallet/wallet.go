@@ -3,7 +3,7 @@ package wallet
 import (
 	"fmt"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/janrockdev/eth-wallet/conn"
+	"github.com/janrockdev/eth-wallet/connector"
 	"github.com/janrockdev/eth-wallet/crypto"
 	"github.com/janrockdev/eth-wallet/types"
 	"github.com/janrockdev/eth-wallet/utils"
@@ -95,7 +95,7 @@ func (w *Wallet) SignTxToRawTx(tx *types.Transaction) (string, error) {
 }
 
 type EthereumWallet struct {
-	conn      *conn.EthConn
+	conn      *connector.EthConn
 	Wallet    *Wallet
 	erc20List []*types.Erc20Token
 }
@@ -106,7 +106,7 @@ func NewEthereumWallet(auth, path string, config types.Config) (*EthereumWallet,
 		return nil, err
 	}
 	return &EthereumWallet{
-		conn:      conn.NewEthConn(config.ServerUrl),
+		conn:      connector.NewEthConn(config.ServerUrl),
 		Wallet:    wallet,
 		erc20List: config.Erc20List,
 	}, nil
@@ -118,7 +118,7 @@ func ImportEthereumWallet(auth, path string, config types.Config) (*EthereumWall
 		return nil, err
 	}
 	return &EthereumWallet{
-		conn:      conn.NewEthConn(config.ServerUrl),
+		conn:      connector.NewEthConn(config.ServerUrl),
 		Wallet:    wallet,
 		erc20List: config.Erc20List,
 	}, nil
@@ -134,7 +134,7 @@ func ImportLookupEthereumWallet(address common.Address, config types.Config) *Et
 		Network: config.Network,
 	}
 	return &EthereumWallet{
-		conn:      conn.NewEthConn(config.ServerUrl),
+		conn:      connector.NewEthConn(config.ServerUrl),
 		Wallet:    wallet,
 		erc20List: config.Erc20List,
 	}
@@ -148,7 +148,7 @@ func ImportEmptyEthereumWallet(config types.Config) *EthereumWallet {
 		Network: config.Network,
 	}
 	return &EthereumWallet{
-		conn:      conn.NewEthConn(config.ServerUrl),
+		conn:      connector.NewEthConn(config.ServerUrl),
 		Wallet:    wallet,
 		erc20List: config.Erc20List,
 	}

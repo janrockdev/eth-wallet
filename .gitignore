@@ -1,4 +1,5 @@
 .DS_Store
+.idea
 wallet/.DS_Store
 wallet/key/
 tests/config.json

@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/janrockdev/eth-wallet/crypto"
-	"github.com/janrockdev/eth-wallet/rlp"
 	"github.com/janrockdev/eth-wallet/utils"
 	"math/big"
 )
@@ -110,7 +109,7 @@ func (t *Transaction) ToSignHash(network *Network) (res []byte) {
 		[]byte{},
 	)
 
-	msgb := rlp.EncodeList(tx)
+	msgb := utils.EncodeList(tx)
 	msghash := crypto.Keccak256(msgb)
 	res = msghash
 	return
@@ -118,7 +117,7 @@ func (t *Transaction) ToSignHash(network *Network) (res []byte) {
 
 func (t *Transaction) ToRLP() (res []byte) {
 	tx := t.ToByteArray()
-	res = rlp.EncodeList(tx)
+	res = utils.EncodeList(tx)
 	return
 }
 

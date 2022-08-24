@@ -1,17 +1,17 @@
 package tests
 
 import (
-	"github.com/janrockdev/eth-wallet/conn"
+	"github.com/janrockdev/eth-wallet/connector"
 	"github.com/janrockdev/eth-wallet/server"
 	"net/http/httptest"
 	"testing"
 )
 
-var ethconn *conn.EthConn
+var ethconn *connector.EthConn
 
 func TestServer(t *testing.T) {
 	ts := httptest.NewServer(server.SetupServer(TestNetwork, 8080))
-	ethconn = conn.NewEthConn(ts.URL)
+	ethconn = connector.NewEthConn(ts.URL)
 	defer ts.Close()
 
 	_, err := ethconn.GetBalance(TestAddress)

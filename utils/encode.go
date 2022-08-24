@@ -1,6 +1,4 @@
-package rlp
-
-import "github.com/janrockdev/eth-wallet/utils"
+package utils
 
 type Offset struct {
 	short byte
@@ -23,7 +21,7 @@ func EncodeList(list [][]byte) (res []byte) {
 		estr := encodeString(str, strOffset)
 		buf = append(buf, estr)
 	}
-	temp := utils.ConcatCopy(buf...)
+	temp := ConcatCopy(buf...)
 
 	return encodeString(temp, arrOffset)
 }
