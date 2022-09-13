@@ -31,8 +31,7 @@ func ScanDir(files *[]string) filepath.WalkFunc {
 }
 
 type Conf struct {
-	ApiPath  string `yaml:"apiPath"`
-	SolToken string `yaml:"solToken"`
+	ApiPath string `yaml:"apiPath"`
 }
 
 func (c *Conf) GetConf() *Conf {

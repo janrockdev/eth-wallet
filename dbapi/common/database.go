@@ -3,6 +3,7 @@ package common
 import (
 	"context"
 	"fmt"
+	"github.com/janrockdev/eth-wallet/dbapi/models"
 	"os"
 	"time"
 
@@ -21,10 +22,11 @@ var (
 type (
 	DB interface {
 		Get(namespace, key []byte) (value []byte, err error)
-		Set(namespace, key, value []byte) error
+		Set(namespace, key []byte, value []byte) error
 		All(namespace []byte) (values []string, err error)
 		Has(namespace, key []byte) (bool, error)
 		Delete(namespace, key []byte) error
+		Update(namespace, key []byte, newval []byte) error
 		Close() error
 	}
 	BadgerDB struct {
@@ -43,7 +45,7 @@ func NewBadgerDB(dataDir string) (DB, error) {
 	opts.SyncWrites = true
 	opts.Dir, opts.ValueDir = dataDir, dataDir
 
-	opts.NumVersionsToKeep = 0
+	opts.NumVersionsToKeep = 1
 	opts.CompactL0OnClose = true
 	opts.NumLevelZeroTables = 1
 	opts.NumLevelZeroTablesStall = 2
@@ -82,7 +84,7 @@ func ConnectBadgerDB(dataDir string) (DB, error) {
 	return bdb, nil
 }
 
-func (bdb *BadgerDB) Get(namespace, key []byte) (value []byte, err error) {
+func (bdb *BadgerDB) Get(namespace []byte, key []byte) (value []byte, err error) {
 	err = bdb.db.View(func(txn *badger.Txn) error {
 		item, err := txn.Get(badgerNamespaceKey(namespace, key))
 		if err != nil {
@@ -101,7 +103,7 @@ func (bdb *BadgerDB) Get(namespace, key []byte) (value []byte, err error) {
 	return value, nil
 }
 
-func (bdb *BadgerDB) Set(namespace, key, value []byte) error {
+func (bdb *BadgerDB) Set(namespace, key []byte, value []byte) error {
 	err := bdb.db.Update(func(txn *badger.Txn) error {
 		return txn.Set(badgerNamespaceKey(namespace, key), value)
 	})
@@ -148,10 +150,30 @@ func (bdb *BadgerDB) Has(namespace, key []byte) (ok bool, err error) {
 	return ok, err
 }
 
-func (bdb BadgerDB) Delete(namespace, key []byte) (err error) {
+func (bdb BadgerDB) Delete(namespace []byte, key []byte) (err error) {
 	err = bdb.db.Update(func(txn *badger.Txn) error {
 		return txn.Delete(badgerNamespaceKey(namespace, key))
 	})
+	return err
+}
+
+func (bdb BadgerDB) Update(namespace []byte, key []byte, newval []byte) (err error) {
+	_, err = bdb.Has(namespace, key)
+	if err != nil {
+		return err
+	} else {
+		Logr.Debug("Record Found!")
+		err := bdb.Delete(namespace, key)
+		if err != nil {
+			return err
+		} else {
+			Logr.Debug("Record Deleted!")
+		}
+		err = bdb.Set(namespace, key, EncodeToBytes(models.CFG{Key: string(key), Value: string(newval)}))
+		if err != nil {
+			return err
+		}
+	}
 	return err
 }
 

@@ -7,3 +7,5 @@ config.json
 go.sum
 keystore
 README.md
+node_modules/
+cli

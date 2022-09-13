@@ -6,7 +6,6 @@ import (
 	"encoding/gob"
 	"github.com/janrockdev/eth-wallet/dbapi/models"
 	"io/ioutil"
-	"log"
 )
 
 func EncodeToBytes(p interface{}) []byte {
@@ -14,7 +13,7 @@ func EncodeToBytes(p interface{}) []byte {
 	enc := gob.NewEncoder(&buf)
 	err := enc.Encode(p)
 	if err != nil {
-		log.Fatal(err) //TODO REPLACE
+		Logr.Fatal(err)
 	}
 	return buf.Bytes()
 }
@@ -37,7 +36,7 @@ func Decompress(s []byte) []byte {
 	rdr, _ := gzip.NewReader(bytes.NewReader(s))
 	data, err := ioutil.ReadAll(rdr)
 	if err != nil {
-		log.Fatal(err)
+		Logr.Fatal(err)
 	}
 	err = rdr.Close()
 	if err != nil {
@@ -46,24 +45,24 @@ func Decompress(s []byte) []byte {
 	return data
 }
 
-func DecodeToRule(s []byte) models.Rule {
-	r := models.Rule{}
+func DecodeToStruct(s []byte) models.CFG {
+	r := models.CFG{}
 	dec := gob.NewDecoder(bytes.NewReader(s))
 	err := dec.Decode(&r)
 	if err != nil {
-		log.Fatal(err)
+		Logr.Fatal(err)
 	}
 	return r
 }
 
-func DecodeToRules(s [][]byte) []models.Rule {
-	var r models.Rule
-	var res []models.Rule
+func DecodeToStructs(s [][]byte) []models.CFG {
+	var r models.CFG
+	var res []models.CFG
 	for _, val := range s {
 		dec := gob.NewDecoder(bytes.NewReader(val))
 		err := dec.Decode(&r)
 		if err != nil {
-			log.Fatal(err)
+			Logr.Fatal(err)
 		}
 		res = append(res, r)
 	}
